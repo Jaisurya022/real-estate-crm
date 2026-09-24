@@ -1,0 +1,207 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * Design tokens
+ * Concrete paper background, slate "ink" text. Each portal gets its own accent:
+ *   admin  -> blueprint blue (planning, control)
+ *   sales  -> brass (deals, the showroom)
+ * Unit status colours follow the availability charts sales offices already use:
+ * green = available, red = booked, grey = blocked.
+ */
+:root {
+  --radius: 0.625rem;
+
+  --background: #f4f5f2;
+  --foreground: #15232c;
+  --card: #ffffff;
+  --card-foreground: #15232c;
+  --popover: #ffffff;
+  --popover-foreground: #15232c;
+  --primary: #2b5797;
+  --primary-foreground: #ffffff;
+  --secondary: #e8ebe6;
+  --secondary-foreground: #15232c;
+  --muted: #eceee9;
+  --muted-foreground: #5a6873;
+  --accent: #e4ebf5;
+  --accent-foreground: #1d3f70;
+  --destructive: #b42318;
+  --border: #dcdfd9;
+  --input: #cfd4cd;
+  --ring: #2b5797;
+
+  --sidebar: #15232c;
+  --sidebar-foreground: #b9c5cd;
+  --sidebar-muted: #7a8b96;
+  --sidebar-active: #213440;
+  --sidebar-active-foreground: #ffffff;
+  --sidebar-indicator: #7fa6de;
+  --sidebar-border: #213440;
+
+  --available: #1f8a5b;
+  --available-soft: #e2f2e9;
+  --booked: #b23a52;
+  --booked-soft: #f7e3e7;
+  --blocked: #6f7b87;
+  --blocked-soft: #e7eaec;
+  --warning: #a8530a;
+  --warning-soft: #fbeedd;
+}
+
+[data-portal="sales"] {
+  --primary: #946518;
+  --ring: #946518;
+  --accent: #f4ead8;
+  --accent-foreground: #6b4a10;
+
+  --sidebar: #fbfbf8;
+  --sidebar-foreground: #4b5963;
+  --sidebar-muted: #7d8a93;
+  --sidebar-active: #f1e6d1;
+  --sidebar-active-foreground: #15232c;
+  --sidebar-indicator: #946518;
+  --sidebar-border: #e2e4de;
+}
+
+.dark {
+  --background: #0e161b;
+  --foreground: #e3e9ec;
+  --card: #141f26;
+  --card-foreground: #e3e9ec;
+  --popover: #172329;
+  --popover-foreground: #e3e9ec;
+  --primary: #83a9e0;
+  --primary-foreground: #0e161b;
+  --secondary: #1c2a33;
+  --secondary-foreground: #e3e9ec;
+  --muted: #19252d;
+  --muted-foreground: #93a3ae;
+  --accent: #1c2b3b;
+  --accent-foreground: #cadcf5;
+  --destructive: #f0645c;
+  --border: #243440;
+  --input: #2c3d49;
+  --ring: #83a9e0;
+
+  --sidebar: #0a1115;
+  --sidebar-foreground: #9fb0bb;
+  --sidebar-muted: #677985;
+  --sidebar-active: #172630;
+  --sidebar-active-foreground: #ffffff;
+  --sidebar-indicator: #83a9e0;
+  --sidebar-border: #172630;
+
+  --available: #4cc38a;
+  --available-soft: rgb(76 195 138 / 0.14);
+  --booked: #ef8199;
+  --booked-soft: rgb(239 129 153 / 0.14);
+  --blocked: #97a4b0;
+  --blocked-soft: rgb(151 164 176 / 0.14);
+  --warning: #f0a54a;
+  --warning-soft: rgb(240 165 74 / 0.14);
+}
+
+.dark[data-portal="sales"] {
+  --primary: #d9a655;
+  --primary-foreground: #17110a;
+  --ring: #d9a655;
+  --accent: #2b2316;
+  --accent-foreground: #f0d6a8;
+
+  --sidebar: #10181d;
+  --sidebar-foreground: #9fb0bb;
+  --sidebar-muted: #677985;
+  --sidebar-active: #262016;
+  --sidebar-active-foreground: #ffffff;
+  --sidebar-indicator: #d9a655;
+  --sidebar-border: #1b252c;
+}
+
+@theme inline {
+  --font-sans: "Public Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Bricolage Grotesque", "Public Sans", ui-sans-serif, sans-serif;
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-muted: var(--sidebar-muted);
+  --color-sidebar-active: var(--sidebar-active);
+  --color-sidebar-active-foreground: var(--sidebar-active-foreground);
+  --color-sidebar-indicator: var(--sidebar-indicator);
+  --color-sidebar-border: var(--sidebar-border);
+
+  --color-available: var(--available);
+  --color-available-soft: var(--available-soft);
+  --color-booked: var(--booked);
+  --color-booked-soft: var(--booked-soft);
+  --color-blocked: var(--blocked);
+  --color-blocked-soft: var(--blocked-soft);
+  --color-warning: var(--warning);
+  --color-warning-soft: var(--warning-soft);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: var(--font-sans);
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    letter-spacing: -0.015em;
+  }
+
+  input[type="datetime-local"]::-webkit-calendar-picker-indicator {
+    opacity: 0.6;
+    cursor: pointer;
+  }
+
+  .dark input[type="datetime-local"]::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
