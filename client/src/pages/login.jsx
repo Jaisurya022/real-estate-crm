@@ -139,7 +139,7 @@ export default function LoginPage() {
               </Button>
             </form>
 
-            <div className="mt-10 border-t pt-6">
+            {/* <div className="mt-10 border-t pt-6">
               <p className="text-sm font-medium">Try a demo account</p>
               <p className="mt-0.5 text-xs text-muted-foreground">Each role opens its own workspace.</p>
               <div className="mt-3 grid grid-cols-2 gap-2">
@@ -157,7 +157,8 @@ export default function LoginPage() {
                   </Button>
                 ))}
               </div>
-            </div>
+            </div> */}
+
           </div>
         </main>
       </div>
