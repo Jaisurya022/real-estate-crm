@@ -2,8 +2,8 @@
 
 A small CRM for a real estate sales team: capture leads, work them through the sales pipeline, browse live unit inventory, and book units without two people ever selling the same flat.
 
-**Live demo:** `https://<your-client>.vercel.app` (see [Deployment](#deployment))
-**API:** `https://<your-api>.vercel.app/api/health`
+**Live demo:** `https://real-estate-crm-seven-chi.vercel.app/` (see [Deployment](#deployment))
+**API:** `https://real-estate-crm-foy5.onrender.com/`
 
 | Role | Email | Password | Lands on |
 | --- | --- | --- | --- |
